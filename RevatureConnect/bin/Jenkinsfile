@@ -1,0 +1,30 @@
+pipeline { 
+    agent any
+    stages{
+        stage('Checkout'){
+            steps {
+                git branch: 'main', url: 'https://github.com/revaturelabs/revature-community-backend.git'
+            }
+        }
+
+        stage('Build'){
+            steps {
+                sh 'chmod a+x ./RevatureConnect/mvnw'
+                //We can change this to false when we want to actually have the tests run during build
+                //Tests increase build time
+                sh './RevatureConnect/mvnw clean package -DskipTests=true'
+            }
+            post{
+                always{
+                    archiveArtifacts 'target/*.jar'
+                }
+            }
+        }
+        
+        stage('DockerBuild') {
+            steps {
+                sh 'docker build -t revaturelabs/revature-community-backend:latest .'
+            }
+        }
+    }
+}
