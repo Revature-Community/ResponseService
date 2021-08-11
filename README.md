@@ -8,7 +8,16 @@ The project aims at providing a place for revature employee's to post or ask que
 
 
 ## Technologies Used
-
+* Java
+* Hibernate
+* Angular
+* JUnit
+* Log4J
+* Maven
+* PostgreSQL
+* RDS
+* Jenkins
+* Docker
 
 ## Features
 
@@ -16,6 +25,7 @@ List of features ready and TODOs for future development
 
 
 To-do list:
+
 posts entirely.
 
 ## Getting Started
